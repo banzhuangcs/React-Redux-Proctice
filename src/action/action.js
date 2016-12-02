@@ -2,26 +2,31 @@
   action
 **/
 
+import { bindActionCreators } from 'redux';
 
-
-export default {
-  pickApple: () => (dispatch, getCurrentState) => {
-      
+export default (dispatch) => bindActionCreators({
+  // 发出请求苹果的动作
+  pickApple: (dispatch, getCurrentState) => {
+            
   },
 
-  pickAppleDone: apples => ({
-    type: 'apple/DONE_PICK_APPLE',
+  // 请求苹果成功的动作
+  pickAppleDone: (apples) => ({
+    type: 'apple/PICK_APPLE_DONE',
     payload: apples
   }),
 
-  pickAppleFail: error => ({
-    type: 'apple/FAIL_PICK_APPLE',
+  // 请求苹果失败的动作
+  pickAppleFail: (error) => ({
+    type: 'apple/PICK_APPLE_FAIL',
     payload: error,
-    error: true
+    error: true,
+    meta: '请求苹果失败'
   }),
 
-  eatApple: appleId => ({
+  // 吃苹果
+  eatApple: (appleIndex) => ({
     type: 'apple/EAT_APPLE',
-    payload: appleId
+    payload: appleIndex
   })
-};
+}, dispatch);

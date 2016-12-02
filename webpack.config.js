@@ -57,7 +57,13 @@ if (env === 'development') {
       historyApiFallback: true,
       colors: true,
       hot: true,
-      inline: true
+      inline: true,
+      proxy: {
+        '/apples/': {
+          target: 'http://localhost:7878',
+          secure: false
+        }
+      }
     },
 
     devtool: '#eval-source-map',
