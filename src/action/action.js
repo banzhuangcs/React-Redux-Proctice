@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 export default (dispatch) => bindActionCreators({
   // 发出请求苹果的动作
   pickApple: (dispatch, getCurrentState) => {
-            
+              
   },
 
   // 请求苹果成功的动作
