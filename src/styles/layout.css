@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.base {
+  width: 100px;
+  height: 150px;
+  background: green;
+}
+
+.normal-x {
+  composes: base;
+}
