@@ -2,17 +2,17 @@
   webpack配置文件
 **/
 
-let path = require('path');
-let webpack = require('webpack');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const __PATH__ = {
+var __PATH__ = {
   dev: path.resolve(__dirname, 'src'),
   pro: path.resolve(__dirname, 'build')
 };
 
-let env = process.env.NODE_ENV;
-let config = {
+var env = process.env.NODE_ENV;
+var config = {
   entry: [ path.join(__PATH__.dev, 'app.js') ],
 
   module: {

@@ -5,7 +5,7 @@
 /*
   数据结构是
     {
-      isPicking (boolean) => 是否正在摘苹果
+      isPicking (boolean) => 是否摘完苹果
       apples: [
         {
           id (string)
@@ -24,14 +24,29 @@ export default (state = {}, action) => {
   switch (action.type) {
     // 吃苹果
     case 'apple/EAT_APPLE':
-      return
+      return Object.assign({}, state, {
+        apples: [
+          ...state.apples.slice(0, action.payload),
+          Object.assign({}, state.apples[action.payload], { isEated: true }),
+          ...state.apples.slice(action.payload + 1)
+        ]
+      });
 
     // 摘苹果成功
     case 'apple/DONE_PICK_APPLE':
-      return
+      return Object.assign({}, state, {
+        isPicking: true,
+        apples: [
+          ...state.apples,
+          ...action.payload
+        ]
+      });
 
     // 摘苹果失败
     case 'apple/FAIL_PICK_APPLE':
+      return Object.assign({}, state, {
+        isPicking: false
+      });
 
     default:
       return state;

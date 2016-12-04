@@ -2,7 +2,7 @@
   数据生成文件
 **/
 
-let Mock = require('mockjs');
+var Mock = require('mockjs');
 
 module.exports = function () {
   return {

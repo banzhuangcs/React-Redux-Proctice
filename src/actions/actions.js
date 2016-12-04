@@ -2,12 +2,18 @@
   action
 **/
 
-import { bindActionCreators } from 'redux';
+import { findAll } from '../services/ajax';
 
-export default (dispatch) => bindActionCreators({
-  // 发出请求苹果的动作
-  pickApple: (dispatch, getCurrentState) => {
-              
+let actions = {
+  pickApple: () => (dispatch, getState) => {
+    // 如果苹果正在请求，并且没有响应
+    if (getState().isPicking)
+      return;
+
+    // 请求苹果
+    findAll('/apples')
+      .then(apples => action.pickAppleDone(apples))
+      .catch(error => action.pickAppleFail(error));
   },
 
   // 请求苹果成功的动作
@@ -29,4 +35,6 @@ export default (dispatch) => bindActionCreators({
     type: 'apple/EAT_APPLE',
     payload: appleIndex
   })
-}, dispatch);
+};
+
+export default actions;

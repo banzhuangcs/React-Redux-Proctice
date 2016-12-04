@@ -3,8 +3,31 @@
 **/
 
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 import reducer from './reducers/reducer';
-import action from './action/action';
+import AppleApp from './AppleApp';
+
+
+// 初始化store
+const store = createStore(reducer);
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={ store }>
+        <AppleApp />
+      </Provider>
+    );
+  }
+}
+
+// 渲染
+const render = () => {
+  ReactDOM.render(<App />, document.querySelector('#app'));
+}
+
+store.subscribe(render);
+
+render();
